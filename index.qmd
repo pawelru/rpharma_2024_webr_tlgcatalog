@@ -2,7 +2,8 @@
 title: "Integrating WebR with the TLG Catalog"
 subtitle: "Enhancing Clinical Reporting Accessibility"
 author: "Pawel Rucki"
-date: "R/Pharma 2024"
+date: "2024-10-30"
+footer: "R/Pharma 2024"
 format:
   revealjs:
     transition: slide
@@ -275,6 +276,11 @@ tbl <- ...
 tbl
 ```
 ````
+
+## Other - already fixed
+
+- `shiny::req()` freezes the app in Shinylive - fixed in
+- Unable to deploy to `gh-pages` due to `BH_1.84.0-0.data` file size
 
 # Conclusions
 
