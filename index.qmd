@@ -1,0 +1,305 @@
+---
+title: "Integrating WebR with the TLG Catalog"
+subtitle: "Enhancing Clinical Reporting Accessibility"
+author: "Pawel Rucki"
+date: "R/Pharma 2024"
+format:
+  revealjs:
+    transition: slide
+    slideNumber: true
+    center: true
+    incremental: true
+    chalkboard: true
+    css: /assets/css/custom.css
+filters:
+  - webr
+webr:
+  autoload-packages: false
+  show-startup-message: false
+---
+
+# About Me
+
+## Pawel Rucki
+
+- NEST Chief Enginneer @ Roche
+- {{< fa brands linkedin >}} [`pawel-rucki`](https://www.linkedin.com/in/pawel-rucki/)
+- {{< fa brands github >}} [`pawelru`](https://github.com/pawelru)
+
+![](/assets/images/pr.jpg){.absolute top=0 right=0 .avatar}
+
+
+# TLG Catalog
+
+## Overview of the TLG Catalog
+
+🌐 [https://insightsengineering.github.io/tlg-catalog](https://insightsengineering.github.io/tlg-catalog)
+
+The TLG Catalog is a comprehensive repository of **T**ables, **L**istings, and **G**raphs (TLGs) used in clinical reporting,  created using R packages.
+
+## {background-iframe="https://insightsengineering.github.io/tlg-catalog"}
+
+## Key Features
+
+- Comprehensive and well-structured catalog comprising 140 outputs, many of which include multiple variants
+- Based on dummy simulated data ([`random.cdisc.data`](https://insightsengineering.github.io/random.cdisc.data/) package)
+- Reproducibility information (including `.lock` file)
+- WebAssembly integration
+  - static output (via WebR)
+  - interactive Shiny applications (via Shinylive)
+
+## Importance of the TLG Catalog
+
+- Serves as a reference guide for clinical trial programmers, offering extensive content.
+- Provides source code and reproducibility details to allow programmers to use it as a base for modifications.
+- Widely adopted at Roche and open-sourced for the benefit of the broader community.
+
+# WebR
+
+## Introduction to WebR
+
+WebR is a framework that ports R to WebAssembly (WASM), allowing R code to run in web browsers without requiring local installations. This enhances accessibility, particularly in environments with centrally managed systems or limited access rights on local machines.
+
+For more information, visit the official documentation: [WebR Documentation](https://docs.r-wasm.org/webr/latest/) and George Stagg's presentations: [Introduction to WebR](https://gws.quarto.pub/introduction-to-webr-2023/), [Shiny Without a Server](https://gws.quarto.pub/shiny-without-a-server-2023/).
+
+## How does it work
+
+![](https://gws.quarto.pub/magic-with-wasm-and-webr/index\_files/figure-revealjs/mermaid-figure-2.png)
+
+::: {style="font-size: 50%;"}
+source: [https://gws.quarto.pub/magic-with-wasm-and-webr](https://gws.quarto.pub/magic-with-wasm-and-webr){fig-align="center"}
+:::
+
+## Shinylive
+
+At the heart of Shinylive is WebR, enabling Shiny applications to run directly in the browser. This allows for publishing Shiny apps without the need for a server.
+
+![](https://gws.quarto.pub/webr-shinylive-overview/images/client-side.png){fig-align="center"}
+
+::: {style="font-size: 50%;"}
+source: [https://gws.quarto.pub/webr-shinylive-overview](https://gws.quarto.pub/webr-shinylive-overview)
+:::
+
+## Quarto integration
+
+WebR integrates directly with Quarto through extensions, enabling easy embedding of R code that runs in the browser. This allows for efficient creation of dynamic, reproducible documents.
+
+For more details, visit: [`coatless/quarto-webr`](https://github.com/coatless/quarto-webr)
+
+## Example:
+
+```{webr-r}
+c(1, 2, 3)
+```
+
+## Example:
+
+```{webr-r}
+fit = lm(mpg ~ am, data = mtcars)
+summary(fit)
+```
+
+## WebR REPL app
+
+REPL - **R**ead - **E**val - **P**rint
+
+🌐 [https://webr.r-wasm.org/latest/](https://webr.r-wasm.org/latest/)
+
+## {background-iframe="https://webr.r-wasm.org/latest/"}
+
+## Limitations
+
+- It might be slow and that's expected.
+- Package availability - currently \~95% of CRAN coverage.
+  - For non-CRAN packages, you would have to build WASM binaries on your own.
+  - Some packages requires specific WebR patches.
+- Still not stable. I have encountered a few issues but the maintainers were very responsive and helpful.
+
+# Integration of WebR with the TLG Catalog
+
+## Motivation
+
+- The integration of WebR into the TLG Catalog aims to make the catalog more **interactive** and **accessible**. No more requirement for local R installation.
+- Embedding interactive applications is far superior to static screenshots of it.
+- Enhances usability, making it suitable for training, experimentation, and iterative data analysis.
+
+# Live Demonstration
+
+## {background-iframe="https://insightsengineering.github.io/tlg-catalog/stable/tables/demography/dmt01.html"}
+
+# Implementation Challenges and Solutions
+
+## Static vs Dynamic
+
+- ⚠️ WebR code chunks are not executable during render process thus not testable.
+
+- ⚠️ We want to know whether the examples code does not throw errors (e.g. due to a new package version).
+
+- ✅ Solution: keep both
+
+## Good UX
+
+- ⚠️ If keep both, we need to assure a good User Experience
+- ⚠️ Embedding shinylive applications require a lot of page width
+- ✅ Solution:
+  - Keep it side by side using Tabs
+  - [Quarto Tabset Groups](https://quarto.org/docs/output-formats/html-basics.html#tabset-groups)
+
+## Keep it DRY
+
+- ⚠️ We want to have a **single** code chunk for both static and dynamic outputs
+- ✅ Solution: 
+  - reusing existing code chunks with `knitr::knit_code$get()`
+  - `results = "asis"` to dynamically create WebR code chunks
+  - [Quarto Shortcodes](https://quarto.org/docs/authoring/shortcodes.html)
+
+## Keep it DRY - code
+
+## {auto-animate="true"}
+
+````{.quarto}
+```{.r setup}
+library(dplyr)
+(...)
+```
+
+```{.r output}
+tbl <- ...
+tbl
+```
+````
+
+## {auto-animate="true"}
+
+````{.quarto}
+```{.r setup}
+library(dplyr)
+(...)
+```
+
+```{.r output}
+tbl <- ...
+tbl
+```
+
+```{.r webr-constructor, echo = FALSE, results = "asis"}
+webr_code_labels <- c("setup", "output")
+text <- unlist(c(
+  "```{webr-r}",
+  lapply(webr_code_labels, knitr::knit_code$get),
+  "```"
+))
+cat(text, sep = "\n")
+```
+````
+
+## {auto-animate="true"}
+
+````{.quarto code-line-numbers="12"}
+```{.r setup}
+library(dplyr)
+(...)
+```
+
+```{.r output}
+tbl <- ...
+tbl
+```
+
+```{.r webr-constructor, echo = FALSE, results = "asis"}
+webr_code_labels <- c("setup", "output")
+text <- unlist(c(
+  "```{webr-r}",
+  lapply(webr_code_labels, knitr::knit_code$get),
+  "```"
+))
+cat(text, sep = "\n")
+```
+````
+
+## {auto-animate="true"}
+
+````{.quarto code-line-numbers="13-17"}
+```{.r setup}
+library(dplyr)
+(...)
+```
+
+```{.r output}
+tbl <- ...
+tbl
+```
+
+```{.r webr-constructor, echo = FALSE, results = "asis"}
+webr_code_labels <- c("setup", "output")
+text <- unlist(c(
+  "```{webr-r}",
+  lapply(webr_code_labels, knitr::knit_code$get),
+  "```"
+))
+cat(text, sep = "\n")
+```
+````
+
+## {auto-animate="true"}
+
+````{.quarto code-line-numbers="11,18-19"}
+```{.r setup}
+library(dplyr)
+(...)
+```
+
+```{.r output}
+tbl <- ...
+tbl
+```
+
+```{.r webr-constructor, echo = FALSE, results = "asis"}
+webr_code_labels <- c("setup", "output")
+text <- unlist(c(
+  "```{webr-r}",
+  lapply(webr_code_labels, knitr::knit_code$get),
+  "```"
+))
+cat(text, sep = "\n")
+```
+````
+
+## Outcome:
+
+````{.quarto}
+```{web-r}
+library(dplyr)
+...
+tbl <- ...
+tbl
+```
+````
+
+# Conclusions
+
+WebR integration makes the TLG Catalog **more accessible** and encourages more user **interaction**.
+
+The interactive nature of WebR enhances learning and usability, making it a powerful addition for training and experimentation in clinical reporting.
+
+# Future directions
+
+## 💡 Introduce WebR to the package documentation
+
+WebR is a native web technology. It should be possible to to integrate into websites created via `pkgdown`.
+
+🌐 [r-lib/pkgdown#2348](https://github.com/r-lib/pkgdown/issues/2348)
+
+## 💡 Introduce Shinylive to the package documentation
+
+## [`roxy.shinylive`](https://insightsengineering.github.io/roxy.shinylive)
+
+Embed Shinylive application(s) in the `roxygen2` package documentation, vigniettes, README, etc.
+
+## 🚀 CI enhancements
+
+- Auto-test whether WebR chunks are failing
+- Auto-update shinylive assets, extensions, etc.
+- Custom repos for shinylive allowing for dev version of packages.
+
+# Thank you 🎉
