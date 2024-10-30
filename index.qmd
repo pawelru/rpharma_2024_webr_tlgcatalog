@@ -85,9 +85,9 @@ source: [https://gws.quarto.pub/webr-shinylive-overview](https://gws.quarto.pub
 
 ## Quarto integration
 
-WebR integrates directly with Quarto through extensions, enabling easy embedding of R code that runs in the browser. This allows for efficient creation of dynamic, reproducible documents.
+Both WebR and Shinylive integrate directly with Quarto through extensions, enabling easy embedding of R code that runs in the browser. This allows for efficient creation of dynamic, reproducible documents.
 
-For more details, visit: [`coatless/quarto-webr`](https://github.com/coatless/quarto-webr)
+For more details, visit: [`coatless/quarto-webr`](https://github.com/coatless/quarto-webr) and [`quarto-ext/shinylive`](https://github.com/quarto-ext/shinylive).
 
 ## Example:
 
@@ -104,7 +104,7 @@ summary(fit)
 
 ## WebR REPL app
 
-REPL - **R**ead - **E**val - **P**rint
+REPL - **R**ead - **E**val - **P**rint - **L**oop
 
 🌐 [https://webr.r-wasm.org/latest/](https://webr.r-wasm.org/latest/)
 
@@ -112,7 +112,7 @@ REPL - **R**ead - **E**val - **P**rint
 
 ## Limitations
 
-- It might be slow and that's expected.
+- It might be slow and that's (somewhat) expected.
 - Package availability - currently \~95% of CRAN coverage.
   - For non-CRAN packages, manual building of WASM binaries may be required.
   - Some packages requires specific WebR patches.
