@@ -1,6 +1,6 @@
 ---
 title: "Integrating WebR with the TLG Catalog"
-subtitle: "Enhancing Clinical Reporting Accessibility"
+subtitle: "Enhancing Clinical Reporting Accessibility through Web-Based R Integration"
 author: "Pawel Rucki"
 date: "2024-10-30"
 footer: "R/Pharma 2024"
@@ -23,7 +23,7 @@ webr:
 
 ## Pawel Rucki
 
-- NEST Chief Enginneer @ Roche
+- Project Tech Lead, NEST @ Roche
 - {{< fa brands linkedin >}} [`pawel-rucki`](https://www.linkedin.com/in/pawel-rucki/)
 - {{< fa brands github >}} [`pawelru`](https://github.com/pawelru)
 
@@ -36,13 +36,13 @@ webr:
 
 🌐 [https://insightsengineering.github.io/tlg-catalog](https://insightsengineering.github.io/tlg-catalog)
 
-The TLG Catalog is a comprehensive repository of **T**ables, **L**istings, and **G**raphs (TLGs) used in clinical reporting,  created using R packages.
+The TLG Catalog serves as a comprehensive repository of **T**ables, **L**istings, and **G**raphs (TLGs) used in clinical reporting, created using R packages.
 
 ## {background-iframe="https://insightsengineering.github.io/tlg-catalog"}
 
 ## Key Features
 
-- Comprehensive and well-structured catalog comprising 140 outputs, many of which include multiple variants
+- A comprehensive, well-structured catalog containing 140 outputs, with numerous multi-variant options to support diverse clinical reporting needs
 - Based on dummy simulated data ([`random.cdisc.data`](https://insightsengineering.github.io/random.cdisc.data/) package)
 - Reproducibility information (including `.lock` file)
 - WebAssembly integration
@@ -73,7 +73,7 @@ source: [https://gws.quarto.pub/magic-with-wasm-and-webr](https://gws.quarto.pub
 
 ## Shinylive
 
-At the heart of Shinylive is WebR, enabling Shiny applications to run directly in the browser. This allows for publishing Shiny apps without the need for a server.
+Powered by WebR, Shinylive enables Shiny applications to run directly in the browser. This allows for publishing Shiny apps without the need for a server.
 
 ![](https://gws.quarto.pub/webr-shinylive-overview/images/client-side.png){fig-align="center"}
 
@@ -112,7 +112,7 @@ REPL - **R**ead - **E**val - **P**rint
 
 - It might be slow and that's expected.
 - Package availability - currently \~95% of CRAN coverage.
-  - For non-CRAN packages, you would have to build WASM binaries on your own.
+  - For non-CRAN packages, manual building of WASM binaries may be required.
   - Some packages requires specific WebR patches.
 - Still not stable. I have encountered a few issues but the maintainers were very responsive and helpful.
 
@@ -184,13 +184,14 @@ tbl
 ```
 
 ```{.r webr-constructor, echo = FALSE, results = "asis"}
-webr_code_labels <- c("setup", "output")
-text <- unlist(c(
+code_chunk_id <- c("setup", "output")
+code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
+final_code_chunk <- unlist(c(
   "```{webr-r}",
-  lapply(webr_code_labels, knitr::knit_code$get),
+  code_chunk_content,
   "```"
 ))
-cat(text, sep = "\n")
+cat(final_code_chunk, sep = "\n")
 ```
 ````
 
@@ -208,19 +209,20 @@ tbl
 ```
 
 ```{.r webr-constructor, echo = FALSE, results = "asis"}
-webr_code_labels <- c("setup", "output")
-text <- unlist(c(
+code_chunk_id <- c("setup", "output")
+code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
+final_code_chunk <- unlist(c(
   "```{webr-r}",
-  lapply(webr_code_labels, knitr::knit_code$get),
+  code_chunk_content,
   "```"
 ))
-cat(text, sep = "\n")
+cat(final_code_chunk, sep = "\n")
 ```
 ````
 
 ## {auto-animate="true"}
 
-````{.quarto code-line-numbers="13-17"}
+````{.quarto code-line-numbers="13"}
 ```{.r setup}
 library(dplyr)
 (...)
@@ -232,19 +234,20 @@ tbl
 ```
 
 ```{.r webr-constructor, echo = FALSE, results = "asis"}
-webr_code_labels <- c("setup", "output")
-text <- unlist(c(
+code_chunk_id <- c("setup", "output")
+code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
+final_code_chunk <- unlist(c(
   "```{webr-r}",
-  lapply(webr_code_labels, knitr::knit_code$get),
+  code_chunk_content,
   "```"
 ))
-cat(text, sep = "\n")
+cat(final_code_chunk, sep = "\n")
 ```
 ````
 
 ## {auto-animate="true"}
 
-````{.quarto code-line-numbers="11,18-19"}
+````{.quarto code-line-numbers="14-18"}
 ```{.r setup}
 library(dplyr)
 (...)
@@ -256,13 +259,39 @@ tbl
 ```
 
 ```{.r webr-constructor, echo = FALSE, results = "asis"}
-webr_code_labels <- c("setup", "output")
-text <- unlist(c(
+code_chunk_id <- c("setup", "output")
+code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
+final_code_chunk <- unlist(c(
   "```{webr-r}",
-  lapply(webr_code_labels, knitr::knit_code$get),
+  code_chunk_content,
   "```"
 ))
-cat(text, sep = "\n")
+cat(final_code_chunk, sep = "\n")
+```
+````
+
+## {auto-animate="true"}
+
+````{.quarto code-line-numbers="11,19-20"}
+```{.r setup}
+library(dplyr)
+(...)
+```
+
+```{.r output}
+tbl <- ...
+tbl
+```
+
+```{.r webr-constructor, echo = FALSE, results = "asis"}
+code_chunk_id <- c("setup", "output")
+code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
+final_code_chunk <- unlist(c(
+  "```{webr-r}",
+  code_chunk_content,
+  "```"
+))
+cat(final_code_chunk, sep = "\n")
 ```
 ````
 
@@ -276,11 +305,6 @@ tbl <- ...
 tbl
 ```
 ````
-
-## Other - already fixed
-
-- `shiny::req()` freezes the app in Shinylive - fixed in
-- Unable to deploy to `gh-pages` due to `BH_1.84.0-0.data` file size
 
 # Conclusions
 
