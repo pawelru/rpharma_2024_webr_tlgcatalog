@@ -691,7 +691,7 @@
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"code":"c(1, 2, 3)","id":1,"options":{"dpi":72,"out-width":"700px","out-height":"","context":"interactive","autorun":"false","output":"true","comment":"","editor-word-wrap":"true","fig-height":5,"label":"unnamed-chunk-1","classes":"","fig-cap":"","read-only":"false","fig-width":7,"editor-font-scale":"0.5","editor-quick-suggestions":"false","warning":"true","results":"markup","editor-max-height":"","message":"true"}},{"code":"fit = lm(mpg ~ am, data = mtcars)\nsummary(fit)","id":2,"options":{"dpi":72,"out-width":"700px","out-height":"","context":"interactive","autorun":"false","output":"true","comment":"","editor-word-wrap":"true","fig-height":5,"label":"unnamed-chunk-2","classes":"","fig-cap":"","read-only":"false","fig-width":7,"editor-font-scale":"0.5","editor-quick-suggestions":"false","warning":"true","results":"markup","editor-max-height":"","message":"true"}}];
+  globalThis.qwebrCellDetails = [{"code":"c(1, 2, 3)","id":1,"options":{"autorun":"false","out-height":"","classes":"","fig-width":7,"output":"true","dpi":72,"fig-cap":"","editor-word-wrap":"true","warning":"true","message":"true","results":"markup","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","fig-height":5,"label":"unnamed-chunk-1","read-only":"false","editor-max-height":"","editor-font-scale":"0.5"}},{"code":"fit = lm(mpg ~ am, data = mtcars)\nsummary(fit)","id":2,"options":{"autorun":"false","out-height":"","classes":"","fig-width":7,"output":"true","dpi":72,"fig-cap":"","editor-word-wrap":"true","warning":"true","message":"true","results":"markup","comment":"","editor-quick-suggestions":"false","out-width":"700px","context":"interactive","fig-height":5,"label":"unnamed-chunk-2","read-only":"false","editor-max-height":"","editor-font-scale":"0.5"}}];
 
   </script>
   <script type="module">
@@ -2320,8 +2320,8 @@ Pawel Rucki
 </section>
 <section id="quarto-integration" class="slide level2 center">
 <h2>Quarto integration</h2>
-<p>WebR integrates directly with Quarto through extensions, enabling easy embedding of R code that runs in the browser. This allows for efficient creation of dynamic, reproducible documents.</p>
-<p>For more details, visit: <a href="https://github.com/coatless/quarto-webr"><code>coatless/quarto-webr</code></a></p>
+<p>Both WebR and Shinylive integrate directly with Quarto through extensions, enabling easy embedding of R code that runs in the browser. This allows for efficient creation of dynamic, reproducible documents.</p>
+<p>For more details, visit: <a href="https://github.com/coatless/quarto-webr"><code>coatless/quarto-webr</code></a> and <a href="https://github.com/quarto-ext/shinylive"><code>quarto-ext/shinylive</code></a>.</p>
 </section>
 <section id="example" class="slide level2 center">
 <h2>Example:</h2>
@@ -2335,7 +2335,7 @@ Pawel Rucki
 </section>
 <section id="webr-repl-app" class="slide level2 center">
 <h2>WebR REPL app</h2>
-<p>REPL - <strong>R</strong>ead - <strong>E</strong>val - <strong>P</strong>rint</p>
+<p>REPL - <strong>R</strong>ead - <strong>E</strong>val - <strong>P</strong>rint - <strong>L</strong>oop</p>
 <p>🌐 <a href="https://webr.r-wasm.org/latest/">https://webr.r-wasm.org/latest/</a></p>
 </section>
 <section id="section-1" class="slide level2 center" data-background-iframe="https://webr.r-wasm.org/latest/">
@@ -2344,7 +2344,7 @@ Pawel Rucki
 <section id="limitations" class="slide level2 center">
 <h2>Limitations</h2>
 <ul>
-<li class="fragment">It might be slow and that’s expected.</li>
+<li class="fragment">It might be slow and that’s (somewhat) expected.</li>
 <li class="fragment">Package availability - currently ~95% of CRAN coverage.
 <ul>
 <li class="fragment">For non-CRAN packages, manual building of WASM binaries may be required.</li>
