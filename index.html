@@ -691,7 +691,7 @@
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"id":1,"options":{"warning":"true","classes":"","label":"unnamed-chunk-1","editor-max-height":"","fig-cap":"","read-only":"false","results":"markup","autorun":"false","editor-quick-suggestions":"false","out-height":"","fig-width":7,"editor-word-wrap":"true","message":"true","context":"interactive","comment":"","output":"true","dpi":72,"fig-height":5,"editor-font-scale":"0.5","out-width":"700px"},"code":"c(1, 2, 3)"},{"id":2,"options":{"warning":"true","classes":"","label":"unnamed-chunk-2","editor-max-height":"","fig-cap":"","read-only":"false","results":"markup","autorun":"false","editor-quick-suggestions":"false","out-height":"","fig-width":7,"editor-word-wrap":"true","message":"true","context":"interactive","comment":"","output":"true","dpi":72,"fig-height":5,"editor-font-scale":"0.5","out-width":"700px"},"code":"fit = lm(mpg ~ am, data = mtcars)\nsummary(fit)"}];
+  globalThis.qwebrCellDetails = [{"code":"c(1, 2, 3)","id":1,"options":{"out-width":"700px","read-only":"false","comment":"","autorun":"false","message":"true","editor-max-height":"","editor-word-wrap":"true","output":"true","editor-font-scale":"0.5","label":"unnamed-chunk-1","dpi":72,"classes":"","results":"markup","warning":"true","fig-cap":"","context":"interactive","fig-height":5,"out-height":"","editor-quick-suggestions":"false","fig-width":7}},{"code":"fit = lm(mpg ~ am, data = mtcars)\nsummary(fit)","id":2,"options":{"out-width":"700px","read-only":"false","comment":"","autorun":"false","message":"true","editor-max-height":"","editor-word-wrap":"true","output":"true","editor-font-scale":"0.5","label":"unnamed-chunk-2","dpi":72,"classes":"","results":"markup","warning":"true","fig-cap":"","context":"interactive","fig-height":5,"out-height":"","editor-quick-suggestions":"false","fig-width":7}}];
 
   </script>
   <script type="module">
@@ -2235,7 +2235,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Integrating WebR with the TLG Catalog</h1>
-  <p class="subtitle">Enhancing Clinical Reporting Accessibility</p>
+  <p class="subtitle">Enhancing Clinical Reporting Accessibility through Web-Based R Integration</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -2255,7 +2255,7 @@ Pawel Rucki
 <section id="pawel-rucki" class="slide level2 center">
 <h2>Pawel Rucki</h2>
 <ul>
-<li class="fragment">NEST Chief Enginneer @ Roche</li>
+<li class="fragment">Project Tech Lead, NEST @ Roche</li>
 <li class="fragment"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i> <a href="https://www.linkedin.com/in/pawel-rucki/"><code>pawel-rucki</code></a></li>
 <li class="fragment"><i class="fa-brands fa-github" aria-label="github"></i> <a href="https://github.com/pawelru"><code>pawelru</code></a></li>
 </ul>
@@ -2269,7 +2269,7 @@ Pawel Rucki
 <section id="overview-of-the-tlg-catalog" class="slide level2 center">
 <h2>Overview of the TLG Catalog</h2>
 <p>🌐 <a href="https://insightsengineering.github.io/tlg-catalog">https://insightsengineering.github.io/tlg-catalog</a></p>
-<p>The TLG Catalog is a comprehensive repository of <strong>T</strong>ables, <strong>L</strong>istings, and <strong>G</strong>raphs (TLGs) used in clinical reporting, created using R packages.</p>
+<p>The TLG Catalog serves as a comprehensive repository of <strong>T</strong>ables, <strong>L</strong>istings, and <strong>G</strong>raphs (TLGs) used in clinical reporting, created using R packages.</p>
 </section>
 <section id="section" class="slide level2 center" data-background-iframe="https://insightsengineering.github.io/tlg-catalog">
 <h2></h2>
@@ -2277,7 +2277,7 @@ Pawel Rucki
 <section id="key-features" class="slide level2 center">
 <h2>Key Features</h2>
 <ul>
-<li class="fragment">Comprehensive and well-structured catalog comprising 140 outputs, many of which include multiple variants</li>
+<li class="fragment">A comprehensive, well-structured catalog containing 140 outputs, with numerous multi-variant options to support diverse clinical reporting needs</li>
 <li class="fragment">Based on dummy simulated data (<a href="https://insightsengineering.github.io/random.cdisc.data/"><code>random.cdisc.data</code></a>&nbsp;package)</li>
 <li class="fragment">Reproducibility information (including <code>.lock</code>&nbsp;file)</li>
 <li class="fragment">WebAssembly integration
@@ -2314,7 +2314,7 @@ Pawel Rucki
 </section>
 <section id="shinylive" class="slide level2 center">
 <h2>Shinylive</h2>
-<p>At the heart of Shinylive is WebR, enabling Shiny applications to run directly in the browser. This allows for publishing Shiny apps without the need for a server.</p>
+<p>Powered by WebR, Shinylive enables Shiny applications to run directly in the browser. This allows for publishing Shiny apps without the need for a server.</p>
 
 <img data-src="https://gws.quarto.pub/webr-shinylive-overview/images/client-side.png" class="quarto-figure quarto-figure-center r-stretch"><div style="font-size: 50%;">
 <p>source:&nbsp;<a href="https://gws.quarto.pub/webr-shinylive-overview">https://gws.quarto.pub/webr-shinylive-overview</a></p>
@@ -2349,7 +2349,7 @@ Pawel Rucki
 <li class="fragment">It might be slow and that’s expected.</li>
 <li class="fragment">Package availability - currently ~95% of CRAN coverage.
 <ul>
-<li class="fragment">For non-CRAN packages, you would have to build WASM binaries on your own.</li>
+<li class="fragment">For non-CRAN packages, manual building of WASM binaries may be required.</li>
 <li class="fragment">Some packages requires specific WebR patches.</li>
 </ul></li>
 <li class="fragment">Still not stable. I have encountered a few issues but the maintainers were very responsive and helpful.</li>
@@ -2441,14 +2441,15 @@ Pawel Rucki
 <span id="cb2-9" class="hljs-ln-code"><a href=""></a>```</span>
 <span id="cb2-10" class="hljs-ln-code"><a href=""></a></span>
 <span id="cb2-11" class="hljs-ln-code"><a href=""></a>```{.r webr-constructor, echo = FALSE, results = "asis"}</span>
-<span id="cb2-12" class="hljs-ln-code"><a href=""></a>webr_code_labels &lt;- c("setup", "output")</span>
-<span id="cb2-13" class="hljs-ln-code"><a href=""></a>text &lt;- unlist(c(</span>
-<span id="cb2-14" class="hljs-ln-code"><a href=""></a>  "```{webr-r}",</span>
-<span id="cb2-15" class="hljs-ln-code"><a href=""></a>  lapply(webr_code_labels, knitr::knit_code$get),</span>
-<span id="cb2-16" class="hljs-ln-code"><a href=""></a>  "```"</span>
-<span id="cb2-17" class="hljs-ln-code"><a href=""></a>))</span>
-<span id="cb2-18" class="hljs-ln-code"><a href=""></a>cat(text, sep = "\n")</span>
-<span id="cb2-19" class="hljs-ln-code"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-12" class="hljs-ln-code"><a href=""></a>code_chunk_id &lt;- c("setup", "output")</span>
+<span id="cb2-13" class="hljs-ln-code"><a href=""></a>code_chunk_content &lt;- lapply(code_chunk_id, knitr::knit_code$get)</span>
+<span id="cb2-14" class="hljs-ln-code"><a href=""></a>final_code_chunk &lt;- unlist(c(</span>
+<span id="cb2-15" class="hljs-ln-code"><a href=""></a>  "```{webr-r}",</span>
+<span id="cb2-16" class="hljs-ln-code"><a href=""></a>  code_chunk_content,</span>
+<span id="cb2-17" class="hljs-ln-code"><a href=""></a>  "```"</span>
+<span id="cb2-18" class="hljs-ln-code"><a href=""></a>))</span>
+<span id="cb2-19" class="hljs-ln-code"><a href=""></a>cat(final_code_chunk, sep = "\n")</span>
+<span id="cb2-20" class="hljs-ln-code"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="section-5" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
@@ -2463,18 +2464,19 @@ Pawel Rucki
 <span id="cb3-9" class="hljs-ln-code"><a href=""></a>```</span>
 <span id="cb3-10" class="hljs-ln-code"><a href=""></a></span>
 <span id="cb3-11" class="hljs-ln-code"><a href=""></a>```{.r webr-constructor, echo = FALSE, results = "asis"}</span>
-<span id="cb3-12" class="hljs-ln-code"><a href=""></a>webr_code_labels &lt;- c("setup", "output")</span>
-<span id="cb3-13" class="hljs-ln-code"><a href=""></a>text &lt;- unlist(c(</span>
-<span id="cb3-14" class="hljs-ln-code"><a href=""></a>  "```{webr-r}",</span>
-<span id="cb3-15" class="hljs-ln-code"><a href=""></a>  lapply(webr_code_labels, knitr::knit_code$get),</span>
-<span id="cb3-16" class="hljs-ln-code"><a href=""></a>  "```"</span>
-<span id="cb3-17" class="hljs-ln-code"><a href=""></a>))</span>
-<span id="cb3-18" class="hljs-ln-code"><a href=""></a>cat(text, sep = "\n")</span>
-<span id="cb3-19" class="hljs-ln-code"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-12" class="hljs-ln-code"><a href=""></a>code_chunk_id &lt;- c("setup", "output")</span>
+<span id="cb3-13" class="hljs-ln-code"><a href=""></a>code_chunk_content &lt;- lapply(code_chunk_id, knitr::knit_code$get)</span>
+<span id="cb3-14" class="hljs-ln-code"><a href=""></a>final_code_chunk &lt;- unlist(c(</span>
+<span id="cb3-15" class="hljs-ln-code"><a href=""></a>  "```{webr-r}",</span>
+<span id="cb3-16" class="hljs-ln-code"><a href=""></a>  code_chunk_content,</span>
+<span id="cb3-17" class="hljs-ln-code"><a href=""></a>  "```"</span>
+<span id="cb3-18" class="hljs-ln-code"><a href=""></a>))</span>
+<span id="cb3-19" class="hljs-ln-code"><a href=""></a>cat(final_code_chunk, sep = "\n")</span>
+<span id="cb3-20" class="hljs-ln-code"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="section-6" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
-<div class="sourceCode" id="cb4" data-code-line-numbers="13-17"><pre class="sourceCode numberSource quarto number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb4-1" class="hljs-ln-code"><a href=""></a>```{.r setup}</span>
+<div class="sourceCode" id="cb4" data-code-line-numbers="13"><pre class="sourceCode numberSource quarto number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb4-1" class="hljs-ln-code"><a href=""></a>```{.r setup}</span>
 <span id="cb4-2" class="hljs-ln-code"><a href=""></a>library(dplyr)</span>
 <span id="cb4-3" class="hljs-ln-code"><a href=""></a>(...)</span>
 <span id="cb4-4" class="hljs-ln-code"><a href=""></a>```</span>
@@ -2485,18 +2487,19 @@ Pawel Rucki
 <span id="cb4-9" class="hljs-ln-code"><a href=""></a>```</span>
 <span id="cb4-10" class="hljs-ln-code"><a href=""></a></span>
 <span id="cb4-11" class="hljs-ln-code"><a href=""></a>```{.r webr-constructor, echo = FALSE, results = "asis"}</span>
-<span id="cb4-12" class="hljs-ln-code"><a href=""></a>webr_code_labels &lt;- c("setup", "output")</span>
-<span id="cb4-13" class="hljs-ln-code"><a href=""></a>text &lt;- unlist(c(</span>
-<span id="cb4-14" class="hljs-ln-code"><a href=""></a>  "```{webr-r}",</span>
-<span id="cb4-15" class="hljs-ln-code"><a href=""></a>  lapply(webr_code_labels, knitr::knit_code$get),</span>
-<span id="cb4-16" class="hljs-ln-code"><a href=""></a>  "```"</span>
-<span id="cb4-17" class="hljs-ln-code"><a href=""></a>))</span>
-<span id="cb4-18" class="hljs-ln-code"><a href=""></a>cat(text, sep = "\n")</span>
-<span id="cb4-19" class="hljs-ln-code"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12" class="hljs-ln-code"><a href=""></a>code_chunk_id &lt;- c("setup", "output")</span>
+<span id="cb4-13" class="hljs-ln-code"><a href=""></a>code_chunk_content &lt;- lapply(code_chunk_id, knitr::knit_code$get)</span>
+<span id="cb4-14" class="hljs-ln-code"><a href=""></a>final_code_chunk &lt;- unlist(c(</span>
+<span id="cb4-15" class="hljs-ln-code"><a href=""></a>  "```{webr-r}",</span>
+<span id="cb4-16" class="hljs-ln-code"><a href=""></a>  code_chunk_content,</span>
+<span id="cb4-17" class="hljs-ln-code"><a href=""></a>  "```"</span>
+<span id="cb4-18" class="hljs-ln-code"><a href=""></a>))</span>
+<span id="cb4-19" class="hljs-ln-code"><a href=""></a>cat(final_code_chunk, sep = "\n")</span>
+<span id="cb4-20" class="hljs-ln-code"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="section-7" class="slide level2 center" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
-<div class="sourceCode" id="cb5" data-code-line-numbers="11,18-19"><pre class="sourceCode numberSource quarto number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb5-1" class="hljs-ln-code"><a href=""></a>```{.r setup}</span>
+<div class="sourceCode" id="cb5" data-code-line-numbers="14-18"><pre class="sourceCode numberSource quarto number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb5-1" class="hljs-ln-code"><a href=""></a>```{.r setup}</span>
 <span id="cb5-2" class="hljs-ln-code"><a href=""></a>library(dplyr)</span>
 <span id="cb5-3" class="hljs-ln-code"><a href=""></a>(...)</span>
 <span id="cb5-4" class="hljs-ln-code"><a href=""></a>```</span>
@@ -2507,30 +2510,47 @@ Pawel Rucki
 <span id="cb5-9" class="hljs-ln-code"><a href=""></a>```</span>
 <span id="cb5-10" class="hljs-ln-code"><a href=""></a></span>
 <span id="cb5-11" class="hljs-ln-code"><a href=""></a>```{.r webr-constructor, echo = FALSE, results = "asis"}</span>
-<span id="cb5-12" class="hljs-ln-code"><a href=""></a>webr_code_labels &lt;- c("setup", "output")</span>
-<span id="cb5-13" class="hljs-ln-code"><a href=""></a>text &lt;- unlist(c(</span>
-<span id="cb5-14" class="hljs-ln-code"><a href=""></a>  "```{webr-r}",</span>
-<span id="cb5-15" class="hljs-ln-code"><a href=""></a>  lapply(webr_code_labels, knitr::knit_code$get),</span>
-<span id="cb5-16" class="hljs-ln-code"><a href=""></a>  "```"</span>
-<span id="cb5-17" class="hljs-ln-code"><a href=""></a>))</span>
-<span id="cb5-18" class="hljs-ln-code"><a href=""></a>cat(text, sep = "\n")</span>
-<span id="cb5-19" class="hljs-ln-code"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-12" class="hljs-ln-code"><a href=""></a>code_chunk_id &lt;- c("setup", "output")</span>
+<span id="cb5-13" class="hljs-ln-code"><a href=""></a>code_chunk_content &lt;- lapply(code_chunk_id, knitr::knit_code$get)</span>
+<span id="cb5-14" class="hljs-ln-code"><a href=""></a>final_code_chunk &lt;- unlist(c(</span>
+<span id="cb5-15" class="hljs-ln-code"><a href=""></a>  "```{webr-r}",</span>
+<span id="cb5-16" class="hljs-ln-code"><a href=""></a>  code_chunk_content,</span>
+<span id="cb5-17" class="hljs-ln-code"><a href=""></a>  "```"</span>
+<span id="cb5-18" class="hljs-ln-code"><a href=""></a>))</span>
+<span id="cb5-19" class="hljs-ln-code"><a href=""></a>cat(final_code_chunk, sep = "\n")</span>
+<span id="cb5-20" class="hljs-ln-code"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="section-8" class="slide level2 center" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sourceCode" id="cb6" data-code-line-numbers="11,19-20"><pre class="sourceCode numberSource quarto number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb6-1" class="hljs-ln-code"><a href=""></a>```{.r setup}</span>
+<span id="cb6-2" class="hljs-ln-code"><a href=""></a>library(dplyr)</span>
+<span id="cb6-3" class="hljs-ln-code"><a href=""></a>(...)</span>
+<span id="cb6-4" class="hljs-ln-code"><a href=""></a>```</span>
+<span id="cb6-5" class="hljs-ln-code"><a href=""></a></span>
+<span id="cb6-6" class="hljs-ln-code"><a href=""></a>```{.r output}</span>
+<span id="cb6-7" class="hljs-ln-code"><a href=""></a>tbl &lt;- ...</span>
+<span id="cb6-8" class="hljs-ln-code"><a href=""></a>tbl</span>
+<span id="cb6-9" class="hljs-ln-code"><a href=""></a>```</span>
+<span id="cb6-10" class="hljs-ln-code"><a href=""></a></span>
+<span id="cb6-11" class="hljs-ln-code"><a href=""></a>```{.r webr-constructor, echo = FALSE, results = "asis"}</span>
+<span id="cb6-12" class="hljs-ln-code"><a href=""></a>code_chunk_id &lt;- c("setup", "output")</span>
+<span id="cb6-13" class="hljs-ln-code"><a href=""></a>code_chunk_content &lt;- lapply(code_chunk_id, knitr::knit_code$get)</span>
+<span id="cb6-14" class="hljs-ln-code"><a href=""></a>final_code_chunk &lt;- unlist(c(</span>
+<span id="cb6-15" class="hljs-ln-code"><a href=""></a>  "```{webr-r}",</span>
+<span id="cb6-16" class="hljs-ln-code"><a href=""></a>  code_chunk_content,</span>
+<span id="cb6-17" class="hljs-ln-code"><a href=""></a>  "```"</span>
+<span id="cb6-18" class="hljs-ln-code"><a href=""></a>))</span>
+<span id="cb6-19" class="hljs-ln-code"><a href=""></a>cat(final_code_chunk, sep = "\n")</span>
+<span id="cb6-20" class="hljs-ln-code"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="outcome" class="slide level2 center">
 <h2>Outcome:</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource quarto number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href=""></a>```{web-r}</span>
-<span id="cb6-2"><a href=""></a>library(dplyr)</span>
-<span id="cb6-3"><a href=""></a>...</span>
-<span id="cb6-4"><a href=""></a>tbl &lt;- ...</span>
-<span id="cb6-5"><a href=""></a>tbl</span>
-<span id="cb6-6"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="other---already-fixed" class="slide level2 center">
-<h2>Other - already fixed</h2>
-<ul>
-<li class="fragment"><code>shiny::req()</code> freezes the app in Shinylive - fixed in</li>
-<li class="fragment">Unable to deploy to <code>gh-pages</code> due to <code>BH_1.84.0-0.data</code> file size</li>
-</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource quarto number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href=""></a>```{web-r}</span>
+<span id="cb7-2"><a href=""></a>library(dplyr)</span>
+<span id="cb7-3"><a href=""></a>...</span>
+<span id="cb7-4"><a href=""></a>tbl &lt;- ...</span>
+<span id="cb7-5"><a href=""></a>tbl</span>
+<span id="cb7-6"><a href=""></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section id="conclusions" class="title-slide slide level1 center">
 <h1>Conclusions</h1>
