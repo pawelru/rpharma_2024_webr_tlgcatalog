@@ -23,9 +23,11 @@ webr:
 
 ## Pawel Rucki
 
-- Project Tech Lead, NEST @ Roche
-- {{< fa brands linkedin >}} [`pawel-rucki`](https://www.linkedin.com/in/pawel-rucki/)
-- {{< fa brands github >}} [`pawelru`](https://github.com/pawelru)
+Project Tech Lead, NEST @ Roche
+
+{{< fa brands linkedin >}} [`pawel-rucki`](https://www.linkedin.com/in/pawel-rucki/)
+
+{{< fa brands github >}} [`pawelru`](https://github.com/pawelru)
 
 ![](/assets/images/pr.jpg){.absolute top=0 right=0 .avatar}
 
@@ -159,12 +161,12 @@ REPL - **R**ead - **E**val - **P**rint
 ## {auto-animate="true"}
 
 ````{.quarto}
-```{.r setup}
+```{{r setup}}
 library(dplyr)
 (...)
 ```
 
-```{.r output}
+```{{r output}}
 tbl <- ...
 tbl
 ```
@@ -173,17 +175,32 @@ tbl
 ## {auto-animate="true"}
 
 ````{.quarto}
-```{.r setup}
+```{{r setup}}
 library(dplyr)
 (...)
 ```
 
-```{.r output}
+```{{r output}}
 tbl <- ...
 tbl
 ```
 
-```{.r webr-constructor, echo = FALSE, results = "asis"}
+```{{r webr-constructor, echo = FALSE, results = "asis"}}
+code_chunk_id <- c("setup", "output")
+code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
+final_code_chunk <- unlist(c(
+  "```{webr-r}",
+  code_chunk_content,
+  "```"
+))
+cat(final_code_chunk, sep = "\n")
+```
+````
+
+## {auto-animate="false"}
+
+````{.quarto code-line-numbers="2"}
+```{{r webr-constructor, echo = FALSE, results = "asis"}}
 code_chunk_id <- c("setup", "output")
 code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
 final_code_chunk <- unlist(c(
@@ -197,18 +214,8 @@ cat(final_code_chunk, sep = "\n")
 
 ## {auto-animate="true"}
 
-````{.quarto code-line-numbers="12"}
-```{.r setup}
-library(dplyr)
-(...)
-```
-
-```{.r output}
-tbl <- ...
-tbl
-```
-
-```{.r webr-constructor, echo = FALSE, results = "asis"}
+````{.quarto code-line-numbers="3"}
+```{{r webr-constructor, echo = FALSE, results = "asis"}}
 code_chunk_id <- c("setup", "output")
 code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
 final_code_chunk <- unlist(c(
@@ -222,18 +229,8 @@ cat(final_code_chunk, sep = "\n")
 
 ## {auto-animate="true"}
 
-````{.quarto code-line-numbers="13"}
-```{.r setup}
-library(dplyr)
-(...)
-```
-
-```{.r output}
-tbl <- ...
-tbl
-```
-
-```{.r webr-constructor, echo = FALSE, results = "asis"}
+````{.quarto code-line-numbers="4-8"}
+```{{r webr-constructor, echo = FALSE, results = "asis"}}
 code_chunk_id <- c("setup", "output")
 code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
 final_code_chunk <- unlist(c(
@@ -247,43 +244,8 @@ cat(final_code_chunk, sep = "\n")
 
 ## {auto-animate="true"}
 
-````{.quarto code-line-numbers="14-18"}
-```{.r setup}
-library(dplyr)
-(...)
-```
-
-```{.r output}
-tbl <- ...
-tbl
-```
-
-```{.r webr-constructor, echo = FALSE, results = "asis"}
-code_chunk_id <- c("setup", "output")
-code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
-final_code_chunk <- unlist(c(
-  "```{webr-r}",
-  code_chunk_content,
-  "```"
-))
-cat(final_code_chunk, sep = "\n")
-```
-````
-
-## {auto-animate="true"}
-
-````{.quarto code-line-numbers="11,19-20"}
-```{.r setup}
-library(dplyr)
-(...)
-```
-
-```{.r output}
-tbl <- ...
-tbl
-```
-
-```{.r webr-constructor, echo = FALSE, results = "asis"}
+````{.quarto code-line-numbers="1,9-10"}
+```{{r webr-constructor, echo = FALSE, results = "asis"}}
 code_chunk_id <- c("setup", "output")
 code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
 final_code_chunk <- unlist(c(
@@ -306,6 +268,51 @@ tbl
 ```
 ````
 
+## Adding Shortcodes
+
+
+:::: {.columns}
+::: {style="font-size: 50%;"}
+File: `my_article.qmd`
+:::
+
+::: {.column width="40%"}
+````{.quarto}
+```{{r setup}}
+library(dplyr)
+(...)
+```
+
+```{{r output}}
+tbl <- ...
+tbl
+```
+
+`r code_chunk_id <- c("setup", "output")`
+{{{< include /_utils/webr.qmd >}}}
+````
+:::
+
+::: {.column width="60%"}
+::: {style="font-size: 50%;"}
+File: `_utils/webr.qmd`
+:::
+
+````{.quarto}
+```{{r webr-constructor, echo = FALSE, results = "asis"}}
+code_chunk_content <- lapply(code_chunk_id, knitr::knit_code$get)
+final_code_chunk <- unlist(c(
+  "```{webr-r}",
+  code_chunk_content,
+  "```"
+))
+cat(final_code_chunk, sep = "\n")
+```
+````
+:::
+
+::::
+
 # Conclusions
 
 WebR integration makes the TLG Catalog **more accessible** and encourages more user **interaction**.
@@ -314,10 +321,15 @@ The interactive nature of WebR enhances learning and usability, making it a powe
 
 # Future directions
 
+## 🚀 CI enhancements
+
+- Auto-test whether WebR chunks are failing
+- Auto-update shinylive assets, extensions, etc.
+- Custom repos for shinylive allowing for dev version of packages.
+
 ## 💡 Introduce WebR to the package documentation
 
 WebR is a native web technology. It should be possible to to integrate into websites created via `pkgdown`.
-
 🌐 [r-lib/pkgdown#2348](https://github.com/r-lib/pkgdown/issues/2348)
 
 ## 💡 Introduce Shinylive to the package documentation
@@ -325,11 +337,5 @@ WebR is a native web technology. It should be possible to to integrate into webs
 ## [`roxy.shinylive`](https://insightsengineering.github.io/roxy.shinylive)
 
 Embed Shinylive application(s) in the `roxygen2` package documentation, vigniettes, README, etc.
-
-## 🚀 CI enhancements
-
-- Auto-test whether WebR chunks are failing
-- Auto-update shinylive assets, extensions, etc.
-- Custom repos for shinylive allowing for dev version of packages.
 
 # Thank you 🎉
